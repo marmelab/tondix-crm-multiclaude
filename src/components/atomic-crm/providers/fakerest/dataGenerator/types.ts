@@ -5,6 +5,7 @@ import type {
   ContactNote,
   Deal,
   DealNote,
+  MaintenancePlan,
   Product,
   Sale,
   ServiceContract,
@@ -25,5 +26,6 @@ export interface Db {
   products: Product[];
   company_machines: CompanyMachine[];
   service_contracts: ServiceContract[];
+  maintenance_plans: MaintenancePlan[];
   configuration: Array<{ id: number; config: ConfigurationContextValue }>;
 }
