@@ -11,7 +11,6 @@ export const DealProductsPanel = () => {
   const { data: dealProducts, refetch } = useGetManyReference<DealProduct>(
     "deal_products",
     { target: "deal_id", id: deal?.id ?? 0 },
-    { enabled: !!deal?.id },
   );
 
   const handleDelete = async (id: number) => {
