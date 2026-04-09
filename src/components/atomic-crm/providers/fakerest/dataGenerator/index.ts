@@ -5,6 +5,7 @@ import { generateContacts } from "./contacts";
 import { generateDealNotes } from "./dealNotes";
 import { generateDeals } from "./deals";
 import { finalize } from "./finalize";
+import { generateMaintenancePlans } from "./maintenancePlans";
 import { generateProducts } from "./products";
 import { generateSales } from "./sales";
 import { generateServiceContracts } from "./serviceContracts";
@@ -25,6 +26,7 @@ export default (): Db => {
   db.products = generateProducts(db);
   db.company_machines = generateCompanyMachines(db);
   db.service_contracts = generateServiceContracts(db);
+  db.maintenance_plans = generateMaintenancePlans(db);
   db.configuration = [
     {
       id: 1,

@@ -281,3 +281,13 @@ export type ServiceContract = {
   status: "actif" | "a-renouveler" | "resilier";
   sales_id: number | null;
 };
+
+export type MaintenancePlan = {
+  id: number;
+  created_at: string;
+  name: string;
+  description: string | null;
+  visits_per_year: number;
+  price: number | null;
+  active: boolean;
+};
