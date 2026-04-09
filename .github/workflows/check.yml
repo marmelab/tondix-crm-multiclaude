@@ -1,0 +1,112 @@
+name: ✅ Check
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        types:
+            - opened
+            - reopened
+            - synchronize
+            - ready_for_review
+    workflow_dispatch:
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
+
+permissions:
+    contents: read
+    checks: write
+    pull-requests: write
+
+jobs:
+    lint:
+        name: 🔬 ESLint & Prettier
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        if: ${{ !github.event.pull_request.draft || github.event_name == 'push' }}
+        steps:
+            - name: 📥 Checkout repo
+              uses: actions/checkout@v4
+
+            - name: ⚙️ Setup node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+
+            - name: 📥 Download deps
+              run: npm ci
+
+            - name: 🔬 ESLint
+              run: npm run lint
+
+            - name: 💅 Prettier
+              run: npx prettier --check --config ./.prettierrc.json "src/**/*.{ts,tsx}" "supabase/**/*.sql"
+
+    typecheck:
+        name: 🏷️ Typecheck
+        timeout-minutes: 10
+        runs-on: ubuntu-latest
+        if: ${{ !github.event.pull_request.draft || github.event_name == 'push' }}
+        steps:
+            - name: 📥 Checkout repo
+              uses: actions/checkout@v4
+
+            - name: ⚙️ Setup node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+
+            - name: 📥 Download deps
+              run: npm ci
+
+            - name: 🏷️ Typecheck
+              run: npm run typecheck
+
+    test:
+        name: 🔎 Unit Tests
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        if: ${{ !github.event.pull_request.draft || github.event_name == 'push' }}
+        steps:
+            - name: 📥 Checkout repo
+              uses: actions/checkout@v4
+
+            - name: ⚙️ Setup node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+
+            - name: 📥 Download deps
+              run: npm ci
+
+            - name: 🎭 Install Playwright browsers
+              run: npx playwright install chromium-headless-shell 1>/dev/null
+
+            - name: 🔎 Unit Tests
+              run: CI=1 npm run test:unit:app -- --run
+
+    build:
+        name: 🔨 Build
+        timeout-minutes: 10
+        runs-on: ubuntu-latest
+        if: ${{ !github.event.pull_request.draft || github.event_name == 'push' }}
+        steps:
+            - name: 📥 Checkout repo
+              uses: actions/checkout@v4
+
+            - name: ⚙️ Setup node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+
+            - name: 📥 Download deps
+              run: npm ci
+
+            - name: 🔨 Build
+              run: npm run build
