@@ -7,7 +7,6 @@ export const CompanyMachinesTab = () => {
   const { data: machines } = useGetManyReference<CompanyMachine>(
     "company_machines",
     { target: "company_id", id: company?.id ?? 0 },
-    { enabled: !!company?.id },
   );
 
   if (!company) return null;

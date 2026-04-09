@@ -15,7 +15,6 @@ export const DealContractPanel = () => {
   const { data: contracts } = useGetManyReference<ServiceContract>(
     "service_contracts",
     { target: "deal_id", id: deal?.id ?? 0 },
-    { enabled: !!deal?.id },
   );
 
   const handleCreate = () => {
