@@ -212,6 +212,8 @@ La sidebar comporte trois sections :
 Onglet "Parc machines" dans la fiche client :
 - Liste des machines possédées (modèle, référence, numéro de série, date d'achat)
 - Lien vers la vente d'origine (si renseignée)
+- Pour chaque machine : affichage du contrat d'entretien actif qui la couvre
+- Badge d'alerte sur les machines dont le contrat arrive à échéance (≤ 60 jours) ou est expiré
 - Bouton "Ajouter une machine" pour enregistrer manuellement une machine existante
 
 ### Extension de la fiche Affaire (`/deals`)
@@ -234,8 +236,11 @@ Ajout de deux panneaux dans la fiche d'une affaire :
 
 Ajout d'un widget "Contrats à renouveler" sur le tableau de bord existant :
 - Liste des contrats dont `renewal_date` est dans les 60 prochains jours
+- Pour chaque contrat : nom du client + liste des machines couvertes concernées
 - Lien direct vers la fiche contrat
 - Badge de compte sur l'icône de navigation
+
+Une vue base de données (`service_contracts_with_machines`) agrège les infos contrat + machines pour alimenter ce widget et l'onglet parc machines sans multiplier les requêtes HTTP.
 
 ---
 
