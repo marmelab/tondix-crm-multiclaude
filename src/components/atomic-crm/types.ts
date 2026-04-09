@@ -125,6 +125,8 @@ export type Deal = {
   expected_closing_date: string;
   sales_id: Identifier;
   index: number;
+  product_id?: number | null;
+  maintenance_plan_id?: number | null;
 } & Pick<RaRecord, "id">;
 
 export type DealNote = {

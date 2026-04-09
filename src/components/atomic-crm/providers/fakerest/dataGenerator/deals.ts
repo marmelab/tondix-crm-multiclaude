@@ -41,6 +41,10 @@ export const generateDeals = (db: Db): Deal[] => {
       expected_closing_date,
       sales_id: company.sales_id!,
       index: 0,
+      product_id: datatype.boolean()
+        ? datatype.number({ min: 0, max: 6 })
+        : null,
+      maintenance_plan_id: null,
     };
   });
   // compute index based on stage

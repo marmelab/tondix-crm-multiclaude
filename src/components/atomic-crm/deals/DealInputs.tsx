@@ -1,5 +1,6 @@
 import { required, useTranslate } from "ra-core";
 import { AutocompleteArrayInput } from "@/components/admin/autocomplete-array-input";
+import { AutocompleteInput } from "@/components/admin/autocomplete-input";
 import { ReferenceArrayInput } from "@/components/admin/reference-array-input";
 import { ReferenceInput } from "@/components/admin/reference-input";
 import { TextInput } from "@/components/admin/text-input";
@@ -59,6 +60,25 @@ const DealLinkedToInputs = () => {
           helperText={false}
         />
       </ReferenceArrayInput>
+
+      <ReferenceInput source="product_id" reference="products">
+        <AutocompleteInput
+          label="Modèle de tondeuse"
+          optionText={(record) => `${record.reference} — ${record.name}`}
+          helperText={false}
+        />
+      </ReferenceInput>
+
+      <ReferenceInput
+        source="maintenance_plan_id"
+        reference="maintenance_plans"
+      >
+        <AutocompleteInput
+          label="Formule d'entretien"
+          optionText="name"
+          helperText={false}
+        />
+      </ReferenceInput>
     </div>
   );
 };
