@@ -23,6 +23,10 @@ const Header = () => {
     currentPath = "/companies";
   } else if (matchPath("/deals/*", location.pathname)) {
     currentPath = "/deals";
+  } else if (matchPath("/products/*", location.pathname)) {
+    currentPath = "/products";
+  } else if (matchPath("/service_contracts/*", location.pathname)) {
+    currentPath = "/service_contracts";
   } else {
     currentPath = false;
   }
@@ -76,6 +80,16 @@ const Header = () => {
                     })}
                     to="/deals"
                     isActive={currentPath === "/deals"}
+                  />
+                  <NavigationTab
+                    label="Tondeuses"
+                    to="/products"
+                    isActive={currentPath === "/products"}
+                  />
+                  <NavigationTab
+                    label="Contrats entretien"
+                    to="/service_contracts"
+                    isActive={currentPath === "/service_contracts"}
                   />
                 </nav>
               </div>
