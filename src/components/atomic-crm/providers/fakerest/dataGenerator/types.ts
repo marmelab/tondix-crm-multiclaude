@@ -5,6 +5,7 @@ import type {
   ContactNote,
   Deal,
   DealNote,
+  DealProduct,
   MaintenancePlan,
   Product,
   Sale,
@@ -24,6 +25,7 @@ export interface Db {
   tags: Tag[];
   tasks: Task[];
   products: Product[];
+  deal_products: DealProduct[];
   company_machines: CompanyMachine[];
   service_contracts: ServiceContract[];
   maintenance_plans: MaintenancePlan[];
