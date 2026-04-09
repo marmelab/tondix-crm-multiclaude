@@ -41,6 +41,7 @@ import {
   ContextInfo,
 } from "./CompanyAside";
 import { CompanyAvatar } from "./CompanyAvatar";
+import { CompanyMachinesTab } from "./CompanyMachinesTab";
 
 export const CompanyShow = () => {
   const isMobile = useIsMobile();
@@ -118,7 +119,7 @@ const CompanyShowContent = () => {
               <h5 className="text-xl ml-2 flex-1">{record.name}</h5>
             </div>
             <Tabs defaultValue={currentTab} onValueChange={handleTabChange}>
-              <TabsList className="grid w-full grid-cols-3">
+              <TabsList className="grid w-full grid-cols-4">
                 <TabsTrigger value="activity">
                   {translate("crm.common.activity")}
                 </TabsTrigger>
@@ -136,6 +137,7 @@ const CompanyShowContent = () => {
                     })}
                   </TabsTrigger>
                 ) : null}
+                <TabsTrigger value="machines">Parc machines</TabsTrigger>
               </TabsList>
               <TabsContent value="activity" className="pt-2">
                 <ActivityLog companyId={record.id} context="company" />
@@ -177,6 +179,9 @@ const CompanyShowContent = () => {
                     <DealsIterator />
                   </ReferenceManyField>
                 ) : null}
+              </TabsContent>
+              <TabsContent value="machines">
+                <CompanyMachinesTab />
               </TabsContent>
             </Tabs>
           </CardContent>
