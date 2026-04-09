@@ -62,6 +62,10 @@ export const frenchCrmMessages = {
       },
       filters: {
         only_mine: "Seulement les entreprises que je gère",
+        machines: "Machines",
+        has_machines: "A des machines",
+        contracts: "Contrats d'entretien",
+        has_contracts: "A des contrats",
       },
     },
     contacts: {

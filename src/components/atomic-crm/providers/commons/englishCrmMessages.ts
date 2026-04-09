@@ -59,6 +59,10 @@ export const englishCrmMessages = {
       },
       filters: {
         only_mine: "Only companies I manage",
+        machines: "Machines",
+        has_machines: "Has machines",
+        contracts: "Maintenance contracts",
+        has_contracts: "Has contracts",
       },
     },
     contacts: {
