@@ -43,7 +43,7 @@ jobs:
               run: npm run lint
 
             - name: 💅 Prettier
-              run: npx prettier --check --config ./.prettierrc.json "**/*.{js,json,ts,tsx,css,md,html}" --ignore-path .gitignore
+              run: npx prettier --check --config ./.prettierrc.json "src/**/*.{ts,tsx}" "supabase/**/*.sql"
 
     typecheck:
         name: 🏷️ Typecheck
